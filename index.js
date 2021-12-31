@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const dynamicMdMatcher = /^(#{1,4})\s+(.*)$/;
 
-const readData = (fullPath = "test.md") => {
+const readData = (fullPath) => {
   return fs.readFileSync(fullPath, "utf8");
 };
 
@@ -32,7 +32,14 @@ const retrieveParsedData = (postContent) => {
   return matchedHeadings;
 };
 
-const fileContents = readData();
+const filePath = process.argv[2];
+
+if (!filePath) {
+  console.error("Missing filepath for markdown");
+  return;
+}
+
+const fileContents = readData(filePath);
 const parsedHeadings = retrieveParsedData(fileContents);
 
 const mdRecursiveSubRoutine = (data, existingGroup = [], solution = []) => {
