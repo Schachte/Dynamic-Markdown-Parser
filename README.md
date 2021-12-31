@@ -8,6 +8,10 @@
 
 ### Output
 
+This is a sample of running the algorithm on this README.
+
+As you'll see, it also takes into account the data within a code snippet, I have plans on adding support to ignore code snippets.
+
 ```
 > node mdparser.js README.md
 
