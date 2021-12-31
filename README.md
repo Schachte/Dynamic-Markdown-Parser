@@ -2,9 +2,39 @@
 
 ## Usage
 
-`git clone <URL>`
+`git clone https://github.com/Schachte/Dynamic-Markdown-Parser.git`
 
-`node mdparser.js <MARKDOWN-RELATIVE-FILE-PATH>.md`
+`node mdparser.js README.md`
+
+### Output
+
+```
+> node mdparser.js README.md
+
+[
+  [
+    { depthCount: 1, type: '#', content: 'Dynamic-Markdown-Parser' },
+    { depthCount: 2, type: '##', content: 'Usage' },
+    { depthCount: 3, type: '###', content: 'Output' }
+  ],
+  [
+    { depthCount: 2, type: '##', content: 'Background' },
+    { depthCount: 2, type: '##', content: 'Sample Input Markdown' }
+  ],
+  [
+    { depthCount: 1, type: '#', content: 'This is a heading' },
+    { depthCount: 2, type: '##', content: 'This is a nested thing' }
+  ],
+  [
+    { depthCount: 1, type: '#', content: 'This would cause a reset' },
+    { depthCount: 3, type: '###', content: 'This is even deeper' }
+  ],
+  [
+    { depthCount: 2, type: '##', content: 'Would this cause a reset?' },
+    { depthCount: 2, type: '##', content: 'Sample Output' }
+  ]
+]
+```
 
 ## Background
 
