@@ -1,5 +1,11 @@
 # Dynamic-Markdown-Parser
 
+## Usage
+
+`git clone <URL>`
+
+`node mdparser.js <MARKDOWN-RELATIVE-FILE-PATH>.md`
+
 ## Background
 
 When utilizing third-party frameworks like `Next.JS` and Markdown rendering tools like `Remark` or `MDX`, you often want to prefix your posts with a `Table of Contents` section.
