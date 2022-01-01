@@ -7,23 +7,23 @@ const depthData = [
   { depthCount: 2, type: "##", content: "Would this cause a reset?" },
 ];
 
-let prevDepth = undefined;
-let closeCount = 0;
 const generateNestedHtml = (depthData) => {
-  let generatedHtml = recursiveListGenerator(
-    depthData,
-    prevDepth || depthData[0].depthCount,
-    ""
-  );
+  let closeCount = 0;
+  let generatedHtml = `<ul>
+  ${recursiveListGenerator(depthData, depthData[0].depthCount, "", closeCount)}
+  </ul>`;
 
-  console.log(generatedHtml);
   return generatedHtml;
 };
 
-const recursiveListGenerator = (layer, prevDepth, generatedCode) => {
+const recursiveListGenerator = (
+  layer,
+  prevDepth,
+  generatedCode,
+  closeCount
+) => {
   if (layer.length == 0) {
     generatedCode += "</ul>";
-    prevDepth = prevDepth;
     return generatedCode;
   }
 
@@ -32,7 +32,12 @@ const recursiveListGenerator = (layer, prevDepth, generatedCode) => {
   if (layer[0].depthCount == prevDepth) {
     generatedCode += `<li>${layer[0].content}</li>`;
     layer.shift();
-    return recursiveListGenerator(layer, currentDepth, generatedCode);
+    return recursiveListGenerator(
+      layer,
+      currentDepth,
+      generatedCode,
+      closeCount
+    );
   }
 
   if (layer[0].depthCount > prevDepth) {
@@ -40,22 +45,33 @@ const recursiveListGenerator = (layer, prevDepth, generatedCode) => {
     // IE. if current depth is 2 (## hello) and next is 3 (### hello), the delta is 1 recursive invocation
     const calculatedRecursionDepth = layer[0].depthCount - prevDepth;
 
+    let tempCloseCount = 0;
     for (let i = 0; i < calculatedRecursionDepth; i++) {
       generatedCode += "<ul>";
-      closeCount++;
+      tempCloseCount++;
     }
 
     generatedCode += `<li>${layer[0].content}</li>`;
     layer.shift();
 
-    return recursiveListGenerator(layer, currentDepth, generatedCode);
+    return recursiveListGenerator(
+      layer,
+      currentDepth,
+      generatedCode,
+      tempCloseCount
+    );
   } else {
     while (closeCount--) generatedCode += "</ul>";
     generatedCode += `<li>${layer[0].content}</li>`;
     layer.shift();
 
-    return recursiveListGenerator(layer, currentDepth, generatedCode);
+    return recursiveListGenerator(
+      layer,
+      currentDepth,
+      generatedCode,
+      closeCount
+    );
   }
 };
 
-generateNestedHtml(depthData);
+console.log(generateNestedHtml(depthData));
