@@ -6,6 +6,8 @@
 
 `node mdparser.js README.md`
 
+You can view samples of how I leverage the output underneath the [samples directory](./samples)
+
 ### Output
 
 This is a sample of running the algorithm on this README.
@@ -102,5 +104,29 @@ If the bottom element is less than the previous element, then there needs to be 
   [
     { depthCount: 2, type: '##', content: 'Would this cause a reset?' }
   ]
+]
+```
+
+### Note
+
+If you don't like the opinionated structuring, you can modify the script to `flatMap` the final output.
+
+```
+const result = mdRecursiveSubRoutine(parsedHeadings).flatMap((item) => item);
+```
+
+```
+[
+  { depthCount: 1, type: '#', content: 'Dynamic-Markdown-Parser' },
+  { depthCount: 2, type: '##', content: 'Usage' },
+  { depthCount: 3, type: '###', content: 'Output' },
+  { depthCount: 2, type: '##', content: 'Background' },
+  { depthCount: 2, type: '##', content: 'Sample Input Markdown' },
+  { depthCount: 1, type: '#', content: 'This is a heading' },
+  { depthCount: 2, type: '##', content: 'This is a nested thing' },
+  { depthCount: 1, type: '#', content: 'This would cause a reset' },
+  { depthCount: 3, type: '###', content: 'This is even deeper' },
+  { depthCount: 2, type: '##', content: 'Would this cause a reset?' },
+  { depthCount: 2, type: '##', content: 'Sample Output' }
 ]
 ```

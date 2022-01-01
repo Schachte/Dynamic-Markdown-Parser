@@ -71,4 +71,4 @@ const mdRecursiveSubRoutine = (data, existingGroup = [], solution = []) => {
 };
 
 const finalResult = mdRecursiveSubRoutine(parsedHeadings);
-console.log(finalResult);
+console.log(finalResult.flatMap((item) => item));
