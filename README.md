@@ -1,5 +1,10 @@
 # Dynamic-Markdown-Parser
 
+## Example
+
+![image](https://user-images.githubusercontent.com/7055226/148092552-c3820ff5-5a5c-488a-8c65-4e2b05066870.png)
+
+
 ## Usage
 
 `git clone https://github.com/Schachte/Dynamic-Markdown-Parser.git`
